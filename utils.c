@@ -27,7 +27,7 @@ void	get_map_dimensions(t_fdf *fdf)
 			z_max = temp->z;
 		if (temp->z < z_min)
 			z_min = temp->z;
-		temp = temp->n
+		temp = temp->next;
 	}
 	fdf->altitude = z_max - z_min;
 	if (fdf->altitude == 0)
