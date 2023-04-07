@@ -5,48 +5,37 @@
 #                                                      +:+                     #
 #    By: fhuisman <fhuisman@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
-#    Created: 2022/10/25 12:25:31 by fhuisman      #+#    #+#                  #
-#    Updated: 2023/04/05 10:36:35 by fhuisman      ########   odam.nl          #
+#    Created: 2022/10/04 13:10:38 by fhuisman      #+#    #+#                  #
+#    Updated: 2023/03/09 14:22:15 by fhuisman      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fdf
+NAME = libft.a
 
 CC = gcc
 
 FLAGS = -Wall -Wextra -Werror
 
-MLXFLAGS = -framework Cocoa -framework OpenGL -framework IOKit -fast
-
-SRC = main.c init_map.c init_fdf.c utils.c exit.c rotate.c draw.c hooks1.c hooks2.c projection.c
+SRC = ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c ft_memchr.c ft_memcmp.c ft_memcpy.c ft_memmove.c ft_memset.c ft_strchr.c ft_strlcat.c ft_strlcpy.c ft_strlen.c ft_strncmp.c ft_strnstr.c ft_strrchr.c ft_tolower.c ft_toupper.c ft_calloc.c ft_strdup.c ft_substr.c ft_strjoin.c ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c ft_striteri.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c conversions.c ft_printf.c hexadecimal.c printunsignedint.c get_next_line.c get_next_line_utils.c
 
 OBJS = ${SRC:.c=.o}
 
-HEADERS = fdf.h
-
-LIBFT = libft/libft.a
-
-MLX = ./MLX42/build/libmlx42.a -Iinclude -lglfw3
+HEADERS = libft.h ft_printf.h get_next_line.h
 
 all: ${NAME}
 
 ${NAME}: ${OBJS}
-	${MAKE} -C ./libft
-	${MAKE} -C ./MLX42/build
-	${CC} ${MLXFLAGS} ${FLAGS} -o ${NAME} ${OBJS} ${LIBFT} ${MLX}
+	ar -src ${NAME} ${OBJS}
 
 %.o: %.c ${HEADERS}
 	${CC} -c ${FLAGS} -o $@ $<
 
 clean:
 	rm -f ${OBJS}
-	${MAKE} clean -C libft
 
-fclean: clean
+fclean:	clean
 	rm -f ${NAME}
-	${MAKE} fclean -C libft
-	${MAKE} clean -C ./MLX42/build
 
-re: fclean all
+re : fclean all
 
 .PHONY: all clean fclean re
