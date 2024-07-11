@@ -36,7 +36,7 @@ Example:
 
 ### Controls
 
-- **Arrow keys**: Move the view
+- **ASWDQE keys**: Move the view
 - **mouse scroll wheel**: Zoom in/out
 - **+/- keys**: Adjust the altitude
 - **ESC**: Exit the program
